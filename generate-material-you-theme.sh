@@ -1,6 +1,7 @@
 #!/bin/bash
 
 scheme=$(jq ".schemes.dark" "/tmp/kde-material-you-colors-$(whoami).json") # import colors from kde-material-you
+wallpaper=$(jq ".pywal.dark.wallpaper" "/tmp/kde-material-you-colors-$(whoami).json" -r)
 
 THEME_NAME="MaterialYou"
 
@@ -32,10 +33,21 @@ prepare() {
 
 
 primary=$(hexToRgb $(echo $scheme | jq ".primary" -r))
+on_primary=$(hexToRgb $(echo $scheme | jq ".onPrimary" -r))
+primary_container=$(hexToRgb $(echo $scheme | jq ".primaryContainer" -r))
+on_primary_container=$(hexToRgb $(echo $scheme | jq ".onPrimaryContainer" -r))
+secondary=$(hexToRgb $(echo $scheme | jq ".secondary" -r))
+on_secondary=$(hexToRgb $(echo $scheme | jq ".onSecondary" -r))
+secondary_container=$(hexToRgb $(echo $scheme | jq ".secondaryContainer" -r))
+on_secondary_container=$(hexToRgb $(echo $scheme | jq ".onSecondaryContainer" -r))
+tertiary=$(hexToRgb $(echo $scheme | jq ".tertiary" -r))
+surface_container=$(hexToRgb $(echo $scheme | jq ".surfaceContainer" -r))
 background=$(hexToRgb $(echo $scheme | jq ".background" -r))
 
+echo $background
+
 generate() {
-    # Theme template
+    # Theme template  
     cat > "$THEME_DIR/manifest.json" << EOF
     {
       "manifest_version": 3,
@@ -46,17 +58,17 @@ generate() {
           "theme_ntp_background" : "$background_image"
         },
         "colors": {
-          #"frame": [$background],
+          "frame": [$surface_container],
           "frame_inactive": [$background],
-          "toolbar": [$primary],
-          #"ntp_text": [$foreground],
-          #"ntp_link": [$accent],
-          #"ntp_section": [$secondary],
-          #"button_background": [$foreground],
-          #"toolbar_button_icon": [$foreground],
-          #"toolbar_text": [$foreground],
-          #"omnibox_background": [$background],
-          #"omnibox_text": [$foreground]
+          "toolbar": [$secondary_container],
+          "ntp_text": [$on_secondary_container],
+          "ntp_link": [$tertiary],
+          "ntp_section": [$secondary_container],
+          "button_background": [$on_primary],
+          "toolbar_button_icon": [$on_secondary_container],
+          "toolbar_text": [$on_secondary_container],
+          "omnibox_background": [$primary],
+          "omnibox_text": [$on_primary]
         },
         "properties": {
           "ntp_background_alignment": "bottom"
@@ -66,6 +78,6 @@ generate() {
 EOF
 }
 
-#prepare
-#generate
-#echo "Pywal Chrome theme generated at $THEME_DIR"
+prepare
+generate
+echo "Pywal Chrome theme generated at $THEME_DIR"

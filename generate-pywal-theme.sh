@@ -36,8 +36,6 @@ foreground=$(hexToRgb $foreground)
 accent=$(hexToRgb $color11)
 secondary=$(hexToRgb $color8)
 
-echo $background
-
 generate() {
     # Theme template
     cat > "$THEME_DIR/manifest.json" << EOF
@@ -72,4 +70,4 @@ EOF
 
 prepare
 generate
-  echo "Pywal Chrome theme generated at $THEME_DIR"
+echo "Pywal Chrome theme generated at $THEME_DIR"

@@ -36,6 +36,7 @@ primary=$(hexToRgb $(echo $scheme | jq ".primary" -r))
 on_primary=$(hexToRgb $(echo $scheme | jq ".onPrimary" -r))
 secondary_container=$(hexToRgb $(echo $scheme | jq ".secondaryContainer" -r))
 on_secondary_container=$(hexToRgb $(echo $scheme | jq ".onSecondaryContainer" -r))
+tertiary=$(hexToRgb $(echo $scheme | jq ".tertiary" -r))
 surface_container=$(hexToRgb $(echo $scheme | jq ".surfaceContainer" -r))
 background=$(hexToRgb $(echo $scheme | jq ".background" -r))
 

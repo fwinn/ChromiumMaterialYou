@@ -34,13 +34,8 @@ prepare() {
 
 primary=$(hexToRgb $(echo $scheme | jq ".primary" -r))
 on_primary=$(hexToRgb $(echo $scheme | jq ".onPrimary" -r))
-primary_container=$(hexToRgb $(echo $scheme | jq ".primaryContainer" -r))
-on_primary_container=$(hexToRgb $(echo $scheme | jq ".onPrimaryContainer" -r))
-secondary=$(hexToRgb $(echo $scheme | jq ".secondary" -r))
-on_secondary=$(hexToRgb $(echo $scheme | jq ".onSecondary" -r))
 secondary_container=$(hexToRgb $(echo $scheme | jq ".secondaryContainer" -r))
 on_secondary_container=$(hexToRgb $(echo $scheme | jq ".onSecondaryContainer" -r))
-tertiary=$(hexToRgb $(echo $scheme | jq ".tertiary" -r))
 surface_container=$(hexToRgb $(echo $scheme | jq ".surfaceContainer" -r))
 background=$(hexToRgb $(echo $scheme | jq ".background" -r))
 
